@@ -17,9 +17,11 @@
  * @example:
  *   5, 10 => 50
  *   5, 5  => 25
+ *
+ * ссылка https://www.geeksforgeeks.org/javascript-math-pi-property/
  */
-function getRectangleArea(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleArea(width, height) {
+  return width * height;
 }
 
 /**
@@ -33,8 +35,8 @@ function getRectangleArea(/* width, height */) {
  *   3.14 => 19.729201864543903
  *   0    => 0
  */
-function getCircleCircumference(/* radius */) {
-  throw new Error('Not implemented');
+function getCircleCircumference(radius) {
+  return 2 * Math.PI * radius;
 }
 
 /**
@@ -49,8 +51,10 @@ function getCircleCircumference(/* radius */) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function getAverage(value1, value2) {
+  const num = value1 + value2;
+
+  return num === 0 ? 0 : num / 2;
 }
 
 /**
@@ -67,9 +71,12 @@ function getAverage(/* value1, value2 */) {
  *   (0,0) (0,1)    => 1
  *   (0,0) (1,0)    => 1
  *   (-5,0) (10,-10) => 18.027756377319946
+ *
+ * ссылка https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/sqrt
  */
-function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getDistanceBetweenPoints(x1, y1, x2, y2) {
+  const num = (x2 - x1) ** 2 + (y2 - y1) ** 2;
+  return Math.sqrt(num);
 }
 
 /**
@@ -84,8 +91,14 @@ function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot(/* a, b */) {
-  throw new Error('Not implemented');
+function getLinearEquationRoot(a, b) {
+  if (b === 0) {
+    return 0;
+  }
+  if (a === 0 || a === 1) {
+    return -b;
+  }
+  return -(b / a);
 }
 
 /**
@@ -104,9 +117,29 @@ function getLinearEquationRoot(/* a, b */) {
  *   (0,1) (0,-1)    => π
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
+ * ссылка https://математика24.рф/ugol-mezhdu-vektorami.html
+ * Math.acos возвращает арккосинус числа, то есть угол в радианах,
+ * чей косинус равен переданному числу. Другими словами,
+ * если y = Math.acos(x), то x = Math.cos(y).
+ * Функция принимает значение в диапазоне от -1 до 1,
+ *  и возвращает угол в радианах в пределах от 0 до π (или от 0 до 180 градусов).
+ * ссылка https://www.geeksforgeeks.org/javascript-math-acos-method/
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  const sumTwoCorner = x1 * x2 + y1 * y2;
+
+  // Вычисляем длины векторов
+  const lengthVector1 = Math.sqrt(x1 * x1 + y1 * y1);
+  const lengthVector2 = Math.sqrt(x2 * x2 + y2 * y2);
+
+  // Вычисляем косинус угла между векторами
+  const cosAngle = sumTwoCorner / (lengthVector1 * lengthVector2);
+
+  // Используем арккосинус для получения угла в радианах
+  const angleRad = Math.acos(cosAngle);
+
+  return angleRad;
+  // throw new Error('Not implemented');
 }
 
 /**
