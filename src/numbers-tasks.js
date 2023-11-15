@@ -294,8 +294,18 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  if (index === 0) return 0;
+  if (index === 2 || index === 1) return 1;
+  let beforSum = 1;
+  let curentSum = 1;
+  let lastSum = 0;
+  for (let i = 3; i <= index; i += 1) {
+    lastSum = beforSum + curentSum;
+    beforSum = curentSum;
+    curentSum = lastSum;
+  }
+  return curentSum;
 }
 
 /**
@@ -309,8 +319,13 @@ function getFibonacciNumber(/* index */) {
  *   10 => 55 // (1+2+3+...+10)
  *   1  => 1
  */
-function getSumToN(/* n */) {
-  throw new Error('Not implemented');
+function getSumToN(n) {
+  if (n === 1) return 1;
+  let allSum = 1;
+  for (let i = 2; i <= n; i += 1) {
+    allSum += i;
+  }
+  return allSum;
 }
 
 /**
@@ -324,8 +339,12 @@ function getSumToN(/* n */) {
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  return String(num)
+    .split('')
+    .reduce((accumulator, currentValue) => {
+      return accumulator + Number(currentValue);
+    }, 0);
 }
 
 /**
@@ -338,9 +357,15 @@ function getSumOfDigits(/* num */) {
  *   4   => true
  *   16  => true
  *   15  => false
+ * link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math
+ * link https://www.geeksforgeeks.org/javascript-program-to-check-whether-a-given-number-is-power-of-2/
+ * link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/log2
+ * link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  if (num <= 0) return false;
+  const logBase2 = Math.log2(num);
+  return Number.isInteger(logBase2);
 }
 
 /**
@@ -352,9 +377,11 @@ function isPowerOfTwo(/* num */) {
  * @example:
  *   0 => 0
  *   Math.PI / 2 => 1
+ * link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math
+ * link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/sin
  */
-function getSine(/* num */) {
-  throw new Error('Not implemented');
+function getSine(num) {
+  return Math.sin(num);
 }
 
 /**
