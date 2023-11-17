@@ -394,9 +394,10 @@ function getSine(num) {
  * @example:
  * 255, 16 => 'ff'
  * 2, 2    => '10'
+ * link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Number/toString
  */
-function numberToStringInBase(/* number, base */) {
-  throw new Error('Not implemented');
+function numberToStringInBase(number, base) {
+  return number.toString(base);
 }
 
 /**
@@ -408,9 +409,12 @@ function numberToStringInBase(/* number, base */) {
  *
  * @example:
  * 12345, 2    => '1.23e+4'
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toExponential
+ * link https://radioprog.ru/post/1097#:~:text=Числа%20в%20экспоненциальном%20представлении%20имеют,остальные%20цифры%20–%20после%20нее
+ * link https://ru.wikipedia.org/wiki/Экспоненциальная_запись
  */
-function toExponential(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toExponential(number, fractionDigits) {
+  return number.toExponential(fractionDigits);
 }
 
 /**
@@ -423,9 +427,10 @@ function toExponential(/* number, fractionDigits */) {
  * @example:
  * 12345, 2    => '12345.00'
  * 12.345, 1   => '12.3'
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
  */
-function toFixed(/* number, fractionDigits */) {
-  throw new Error('Not implemented');
+function toFixed(number, fractionDigits) {
+  return number.toFixed(fractionDigits);
 }
 
 /**
@@ -439,9 +444,10 @@ function toFixed(/* number, fractionDigits */) {
  * @example:
  * 12345, 7    => '12345.00'
  * 12.345, 4   => '12.35'
+ * link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Number/toPrecision
  */
-function toPrecision(/* number, precision */) {
-  throw new Error('Not implemented');
+function toPrecision(number, precision) {
+  return number.toPrecision(precision);
 }
 
 /**
@@ -453,9 +459,17 @@ function toPrecision(/* number, precision */) {
  * @example:
  * new Number(5) => 5
  * Number(-5)    => -5
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number
+ * link https://qaa-engineer.ru/kak-rabotat-s-obektom-number-v-javascript/
+ * const num = new Number(42);
+ * console.log(typeof numberObject);           // "object"
+ * console.log(numberObject.valueOf());        // 42
+ * console.log(+numberObject);                 // 42
+ * console.log(Number(numberObject));          // 42
  */
-function getNumberValue(/* number */) {
-  throw new Error('Not implemented');
+function getNumberValue(number) {
+  const num = Number(number);
+  return num.valueOf();
 }
 
 /**
@@ -472,9 +486,17 @@ function getNumberValue(/* number */) {
  * 'a'      => false
  * 5        => true
  * '5'      => false
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite
+ * link https://doka.guide/js/number-isfinite/
+ *
+ * В математике конечным числом можно считать по сути любое число,
+ * потому что у числа есть конечное значение.
+ * Только у бесконечностей нет фиксированного и конечного значения.
+ * Метод Number.isFinite() позволяет проверить это свойство у переданного числа.
  */
-function isNumber(/* number */) {
-  throw new Error('Not implemented');
+function isNumber(number) {
+  return Number.isInteger(number) && Number.isFinite(number);
 }
 
 /**
@@ -487,9 +509,21 @@ function isNumber(/* number */) {
  * 5    => true
  * 5.1  => false
  * '5'  => false
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite
+ * link https://doka.guide/js/number-isfinite/
+ *
+ * В математике конечным числом можно считать по сути любое число,
+ * потому что у числа есть конечное значение.
+ * Только у бесконечностей нет фиксированного и конечного значения.
+ * Метод Number.isFinite() позволяет проверить это свойство у переданного числа.
  */
-function isInteger(/* number */) {
-  throw new Error('Not implemented');
+function isInteger(number) {
+  return (
+    Number.isInteger(number) &&
+    Number.isFinite(number) &&
+    number === Math.round(number)
+  );
 }
 
 /**
@@ -501,9 +535,12 @@ function isInteger(/* number */) {
  * @example:
  * '4.567abcdefgh' => 4.567
  * 'abcdefgh'      => NaN
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseFloat
  */
-function getFloatOnString(/* str */) {
-  throw new Error('Not implemented');
+function getFloatOnString(str) {
+  const res = Number.parseFloat(str);
+  if (Number.isNaN(res)) return NaN;
+  return res;
 }
 
 /**
@@ -519,9 +556,10 @@ function getFloatOnString(/* str */) {
  * 'abcdefgh', 10       => NaN
  * '1.234', 2           => 1
  * '10', 8              => 8
+ * ссылка https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt
  */
-function getIntegerOnString(/* str, base */) {
-  throw new Error('Not implemented');
+function getIntegerOnString(str, base) {
+  return Number.parseInt(str, base);
 }
 
 /**
@@ -534,9 +572,10 @@ function getIntegerOnString(/* str, base */) {
  * 10       => true
  * 3.5      => false
  * 2 ** 53  => false
+ * link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Number/isSafeInteger
  */
-function isSafeInteger(/* number */) {
-  throw new Error('Not implemented');
+function isSafeInteger(number) {
+  return Number.isSafeInteger(number);
 }
 
 /**
@@ -548,9 +587,10 @@ function isSafeInteger(/* number */) {
  * @example:
  * 5.9  => 5
  * -5.1 => -6
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/floor
  */
-function roundToSmallestInteger(/* number */) {
-  throw new Error('Not implemented');
+function roundToSmallestInteger(number) {
+  return Math.floor(number);
 }
 
 /**
@@ -562,9 +602,10 @@ function roundToSmallestInteger(/* number */) {
  * @example:
  * 5.1  => 6
  * -5.9 => -5
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/ceil
  */
-function roundToLargestInteger(/* number */) {
-  throw new Error('Not implemented');
+function roundToLargestInteger(number) {
+  return Math.ceil(number);
 }
 
 /**
@@ -577,9 +618,10 @@ function roundToLargestInteger(/* number */) {
  * 5.5  => 6
  * 5.4  => 5
  * -5.5 => -5
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
  */
-function roundToNearestInteger(/* number */) {
-  throw new Error('Not implemented');
+function roundToNearestInteger(number) {
+  return Math.round(number);
 }
 
 /**
@@ -592,9 +634,10 @@ function roundToNearestInteger(/* number */) {
  * 5.5  => 5
  * 5.4  => 5
  * -5.5 => -5
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/trunc
  */
-function getIntegerPartNumber(/* number */) {
-  throw new Error('Not implemented');
+function getIntegerPartNumber(number) {
+  return Math.trunc(number);
 }
 
 /**
@@ -608,9 +651,12 @@ function getIntegerPartNumber(/* number */) {
  * @example:
  * 1, 2, 3       => 6
  * 0.1, 0.2, 0.3 => 0.6
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed
+ * link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseFloat
  */
-function getSumOfNumbers(/* x1, x2, x3 */) {
-  throw new Error('Not implemented');
+function getSumOfNumbers(x1, x2, x3) {
+  const sum = x1 + x2 + x3;
+  return Number.parseFloat(sum.toFixed(2));
 }
 
 /**
