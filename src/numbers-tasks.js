@@ -52,9 +52,19 @@ function getCircleCircumference(radius) {
  *  -3, 3  => 0
  */
 function getAverage(value1, value2) {
-  const num = value1 + value2;
+  const sum = value1 + value2;
 
-  return num === 0 ? 0 : num / 2;
+  if (sum === 0) {
+    return 0;
+  }
+
+  const average = sum / 2;
+
+  if (!Number.isFinite(average)) {
+    return `1.7976931348623157e+308`;
+  }
+
+  return average;
 }
 
 /**
@@ -701,11 +711,10 @@ function getRandomInteger(min, max) {
  *
  * @example:
  * 3, 4 => 5
+ * link: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/hypot
  */
-function getHypotenuse(/* a, b */) {
-  // const num = a ** 2 + b ** 2;
-  // return Math.sqrt(num);
-  throw new Error('Not implemented');
+function getHypotenuse(a, b) {
+  return Math.hypot(a, b);
 }
 
 /**
@@ -723,9 +732,12 @@ function getHypotenuse(/* a, b */) {
  */
 function getCountOfOddNumbers(number) {
   let count = 0;
-  for (let i = 1; i <= number; i += 1) {
-    if (i % 2 !== 0) count += 1;
+  for (let i = 0; i <= Math.abs(number); i += 1) {
+    if (i % 2 !== 0) {
+      count += 1;
+    }
   }
+
   return count;
 }
 
